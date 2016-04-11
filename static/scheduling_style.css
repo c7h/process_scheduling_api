@@ -1,0 +1,62 @@
+.chart {
+		shape-rendering: crispEdges;
+}
+
+.mini text {
+	font: 9px sans-serif;	
+}
+
+.main text {
+	font: 12px sans-serif;
+}
+
+.launch-ar {
+	stroke-width:3;
+	stroke: #000;
+}
+
+.quantum rect{
+	fill: steelblue;
+	stroke: black;
+}
+
+.quantum text{
+	font: 9px sans-serif;		
+}
+
+.running {
+	fill: lightblue;
+	stroke-width: 1px;
+	stroke: blue;	
+}
+
+.waiting {
+	fill: orange;
+	fill-opacity: .7;
+	stroke-width: 1px;
+	stroke: gray;
+}
+
+.paused {
+	fill: lightgray;
+	fill-opacity: .7;
+	stroke-width: 1px;
+	stroke: blue;	
+}
+
+.ready {
+	fill: darkgray;
+	fill-opacity: .7;
+	stroke-width: 1px;
+	stroke: blue;
+}
+
+.brush .extent {
+	stroke: gray;
+	fill: dodgerblue;
+	fill-opacity: .15;
+}
+
+.axis line, .axis path {
+	stroke: gray;
+}

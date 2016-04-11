@@ -1,0 +1,51 @@
+<html>
+<head>
+	<title>process scheduling</title>
+	<link rel="stylesheet" type="text/css" href="/static/scheduling_style.css">
+	<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+	<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript">
+		//fill data in scheduling list
+		$.getJSON("/scheduler", function (data){
+
+			    $('#strategy').empty(); // empty the dropdown (if necessarry)
+			    var slist = data["installed scheduler"]
+			    $.each(slist, function(iIndex, sElement) {
+			        $('#strategy').append('<option>' + sElement + '</option>');
+			    });
+				
+		});
+
+		//define function to call scheduler
+		function startScheduler(strategy, initial_process, syntax){
+			$.ajax({
+				url: "/schedule/with/"+strategy,
+				context: document
+			})
+		}
+
+	</script>
+	</head>
+<body>
+	<h1>Process Scheduling Visualizer</h1>
+
+	<div id='visualizer'></div>
+
+	<form method="POST" action="/schedule/with/fifo">
+		<textarea name="syntax" cols="40" rows="5"></textarea>
+
+		<input type="text" name="initial_process" value="">		
+		<select id="strategy"></select>
+  		<input type="submit" value="Submit">
+	</form>
+
+
+
+
+	<!-- Kommt am Ende, da erst DOM geladen werden muss -->
+	<script src='/static/js/datasource.js' charset='utf-8'></script>
+	<script src='/static/js/scheduling.js'></script>
+
+
+</body>
+</html>
