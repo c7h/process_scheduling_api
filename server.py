@@ -1,14 +1,11 @@
 from flask import Flask, jsonify, render_template
-# from flask import g
 from flask_restful import Resource, Api, reqparse
-import sys; sys.path.append("../algorithm2") # for testing
 
-from common.serializer import JsonSerializer
-from common.parser import parseSyntax
-from scheduler.core import SchedulerFactory
-
-from process.process import ProcessManager
-from scheduler.timer import SystemTimer
+from process_scheduler.common.serializer import JsonSerializer
+from process_scheduler.common.parser import parseSyntax
+from process_scheduler.scheduler.core import SchedulerFactory
+from process_scheduler.process.process import ProcessManager
+from process_scheduler.scheduler.timer import SystemTimer
 
 from errors import error_translation
 
