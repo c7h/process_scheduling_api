@@ -1,0 +1,91 @@
+{
+    "items": [
+        {
+            "details": "Ready(0)", 
+            "end": 0, 
+            "id": "urn:uuid:0a801821-a83f-11e5-a43b-6c4008ad8c38", 
+            "lane": 0, 
+            "start": 0, 
+            "state": "ready"
+        }, 
+        {
+            "details": "Ready(5)", 
+            "end": 35, 
+            "id": "urn:uuid:0a821b8f-a83f-11e5-8e92-6c4008ad8c38", 
+            "lane": 0, 
+            "start": 30, 
+            "state": "ready"
+        }, 
+        {
+            "details": "Work(10)", 
+            "end": 10, 
+            "id": "urn:uuid:0a821ccf-a83f-11e5-a125-6c4008ad8c38", 
+            "lane": 0, 
+            "start": 0, 
+            "state": "running"
+        }, 
+        {
+            "details": "Work(10)", 
+            "end": 20, 
+            "id": "urn:uuid:0a821d97-a83f-11e5-a0b3-6c4008ad8c38", 
+            "lane": 0, 
+            "start": 10, 
+            "state": "running"
+        }, 
+        {
+            "details": "Work(5)", 
+            "end": 40, 
+            "id": "urn:uuid:0a821e40-a83f-11e5-8557-6c4008ad8c38", 
+            "lane": 0, 
+            "start": 35, 
+            "state": "running"
+        }, 
+        {
+            "details": "Wait(10)", 
+            "end": 30, 
+            "id": "urn:uuid:0a821ede-a83f-11e5-9d93-6c4008ad8c38", 
+            "lane": 0, 
+            "start": 20, 
+            "state": "paused"
+        }, 
+        {
+            "details": "Ready(10)", 
+            "end": 20, 
+            "id": "urn:uuid:0a8220ca-a83f-11e5-ad15-6c4008ad8c38", 
+            "lane": 1, 
+            "start": 10, 
+            "state": "ready"
+        }, 
+        {
+            "details": "Work(10)", 
+            "end": 30, 
+            "id": "urn:uuid:0a82217d-a83f-11e5-8fa3-6c4008ad8c38", 
+            "lane": 1, 
+            "start": 20, 
+            "state": "running"
+        }, 
+        {
+            "details": "Work(5)", 
+            "end": 35, 
+            "id": "urn:uuid:0a82221c-a83f-11e5-9934-6c4008ad8c38", 
+            "lane": 1, 
+            "start": 30, 
+            "state": "running"
+        }
+    ], 
+    "lanes": [
+        "A", 
+        "B"
+    ], 
+    "launches": [
+        {
+            "target": 1, 
+            "timestamp": 10, 
+            "trigger": 0
+        }
+    ], 
+    "quantum_data" : [
+    ], 
+    "time_begin": 0, 
+    "time_end": 40
+}

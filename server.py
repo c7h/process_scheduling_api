@@ -1,6 +1,8 @@
 from flask import Flask, jsonify, render_template
 from flask_restful import Resource, Api, reqparse
 
+import os, sys; sys.path.append(os.path.abspath('process_scheduler'))
+
 from process_scheduler.common.serializer import JsonSerializer
 from process_scheduler.common.parser import parseSyntax
 from process_scheduler.scheduler.core import SchedulerFactory
@@ -71,9 +73,9 @@ api.add_resource(Scheduler,
 # mainpage
 @app.route("/", methods=['GET'])
 def mainpage():
-	return render_template('main.html')
+	return render_template('combined.html')
 
 
 
 if __name__ == '__main__':
-    app.run(debug=True, threaded=True)
+    app.run(debug=False, threaded=True)

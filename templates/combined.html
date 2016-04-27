@@ -15,6 +15,63 @@
     <!-- css imports here -->
     <link href="/static/css/bootstrap.min.css" rel="stylesheet">
     <link href="/static/css/style.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/static/css/scheduling_style.css">
+
+    <!-- script section -->
+    <script src="/static/js/jquery.min.js"></script>
+
+    <script type="text/javascript">
+
+    	$(document).ready(function(){
+    		loadData("/static/default.json");
+    	});
+
+		//fill data in scheduling list
+		$.getJSON("/scheduler", function (data){
+
+			    $('#strategy').empty(); // empty the dropdown (if necessarry)
+			    var slist = data["installed scheduler"]
+			    $.each(slist, function(iIndex, sElement) {
+			        $('#strategy').append('<option value="' +sElement+ '">' + sElement + '</option>');
+			    });
+				
+		});
+
+		//define function to call scheduler
+		function startScheduler(strategy, initial_process, syntax){
+			var url = "/schedule/with/"+strategy;
+
+			var result = $.post(
+				url,
+				{
+					'initial_process':initial_process,
+					'syntax':syntax,
+				}
+			);
+
+			result.done(function (data){
+				d3.selectAll('.chart').remove(); 
+				createChart(data);
+			});
+
+			result.fail(function (data){
+				//show an error message
+				var box = $('#alertbox');
+				$("#alert-text").text(data.responseJSON.message)
+				box.addClass('in');
+			})
+		};
+
+
+		function callScheduler(){
+			$('#alertbox').removeClass('in');
+			var e = $('#strategy')[0];
+			var strategy = e.options[e.selectedIndex].value;
+			var initial = document.getElementById("initial_process").value;
+			var syntax = document.getElementById("SyntaxField").value;
+			startScheduler(strategy, initial, syntax);
+		};
+	</script>
 
   </head>
   <body>
@@ -32,9 +89,6 @@
 				
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav">
-<!-- 						<li>
-							<a href="#"></a>
-						</li> -->
 						<li class="dropdown">
 							 <a href="#" class="dropdown-toggle" data-toggle="dropdown">more...<strong class="caret"></strong></a>
 							<ul class="dropdown-menu">
@@ -42,7 +96,7 @@
 									<a href="http://github.com/c7h/process_scheduler">view code on GitHub</a>
 								</li>
 								<li>
-									<a href="#">read my thesis</a>
+									<a href="http://gerneth.info/files/[GERNETH_Christoph]-Bachelorarbeit.pdf">read my thesis</a>
 								</li>
 								<li class="divider">
 								</li>
@@ -62,19 +116,20 @@
 			</nav>
 			<div class="row">
 				<div class="col-md-12">
-					<img class="img-responsive" alt="Bootstrap Image Preview" src="/static/img/mockup.png">
+					<!-- <img class="img-responsive" alt="Bootstrap Image Preview" src="/static/img/mockup.png"> -->
+					<div id='visualizer' class="center"></div>
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-md-12">
-					<div class="alert alert-dismissable alert-danger">
+					<div class="alert alert-dismissable alert-danger fade" id="alertbox">
 						 
 						<button type="button" class="close" data-dismiss="alert" aria-hidden="true">
 							×
 						</button>
 						<h4>
 							Alert!
-						</h4> <strong>Warning!</strong> Best check yo self, you're not looking too good. <a href="#" class="alert-link">alert link</a>
+						</h4> <strong id="alert-text">Something went wrong...</strong> 
 					</div>
 					<div class="row">
 						<div class="col-md-12">
@@ -96,7 +151,7 @@
 									<label for="strategy">
 										Strategie
 									</label>
-									<select name="strategy class="form-control" id="strategy"></select>
+									<select name="strategy" class="form-control" id="strategy"></select>
 								</div>
 
 							</form>
@@ -104,7 +159,7 @@
 
 						</div>
 					</div> 
-					<button type="button" class="btn btn-primary btn-lg btn-block">
+					<button type="button" class="btn btn-primary btn-lg btn-block" onclick="callScheduler();">
 						run
 					</button>
 				</div>
@@ -119,4 +174,4 @@
     <script src="/static/js/datasource.js" charset='utf-8'></script>
 	<script src="/static/js/scheduling.js"></script>
   </body>
-</html>12
+</html>
